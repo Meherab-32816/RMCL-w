@@ -3,12 +3,12 @@ function Footer({ companyName, description, links, contact }) {
     'text-sm text-white/90 transition-colors duration-200 hover:text-accent focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary'
 
   return (
-    <footer className="border-t border-primary/15 bg-primary py-14 text-white" aria-label="Footer">
+    <footer className="border-t border-primary/15 bg-primary py-14 text-white">
       <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 lg:grid-cols-3 lg:px-8">
-        <section aria-label="Company overview">
+        <div>
           <h2 className="text-lg font-bold tracking-[0.08em]">{companyName}</h2>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/85">{description}</p>
-        </section>
+        </div>
 
         <nav aria-label="Footer links">
           <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Explore</h3>
@@ -23,7 +23,7 @@ function Footer({ companyName, description, links, contact }) {
           </ul>
         </nav>
 
-        <address className="not-italic" aria-label="Contact details">
+        <address className="not-italic">
           <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Contact</h3>
           <p className="mt-4 text-sm leading-relaxed text-white/90">{contact.address}</p>
           <a className={`mt-3 block ${footerLinkClasses}`} href={`mailto:${contact.email}`}>

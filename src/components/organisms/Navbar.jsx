@@ -25,7 +25,7 @@ function Navbar({ companyName, links, cta, activeHref, onNavLinkClick, onCtaClic
       </a>
       <nav className="mx-auto w-full max-w-6xl px-6 py-4 lg:px-8" aria-label="Primary">
         <div className="flex items-center justify-between gap-4">
-          <a href="#top" aria-label={`${companyName} homepage`} className="text-base font-bold tracking-[0.12em] text-primary">
+          <a href="#top" className="text-base font-bold tracking-[0.12em] text-primary">
             {companyName}
           </a>
 
