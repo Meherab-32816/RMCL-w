@@ -18,7 +18,7 @@ function Button({
 
   if (href) {
     return (
-      <a className={classes} href={href}>
+      <a className={classes} href={href} onClick={onClick}>
         {children}
       </a>
     )
