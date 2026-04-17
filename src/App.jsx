@@ -1,19 +1,101 @@
+import { useEffect, useMemo, useRef, useState } from 'react'
 import Button from './components/atoms/Button'
 import Footer from './components/organisms/Footer'
 import HeroSection from './components/organisms/HeroSection'
 import Navbar from './components/organisms/Navbar'
 import SectionWrapper from './components/molecules/SectionWrapper'
 import siteContent from './content/siteContent.json'
+import { trackCtaInteraction } from './utils/interactionTracking'
 
 function App() {
   const { companyName, navbar, hero, services, methodology, caseStudies, cta, footer } = siteContent
+  const sectionIds = useMemo(() => navbar.links.map((link) => link.href.replace('#', '')), [navbar.links])
+  const [activeHref, setActiveHref] = useState(navbar.links[0]?.href ?? '')
+  const visibleSectionsRef = useRef(new Map())
+
+  const createTrackedCtaHandler = (placement, action) => () => {
+    if (!action) {
+      return
+    }
+
+    trackCtaInteraction({
+      href: action.href,
+      label: action.label,
+      placement,
+    })
+  }
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || sectionIds.length === 0) {
+      return
+    }
+
+    const visibleSections = visibleSectionsRef.current
+    const sections = sectionIds
+      .map((sectionId) => document.getElementById(sectionId))
+      .filter((section) => section !== null)
+
+    if (sections.length === 0) {
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            visibleSections.set(entry.target.id, {
+              ratio: entry.intersectionRatio,
+              top: Math.abs(entry.boundingClientRect.top),
+            })
+            return
+          }
+
+          visibleSections.delete(entry.target.id)
+        })
+
+        if (visibleSections.size === 0) {
+          return
+        }
+
+        const [nextActiveSectionId] = [...visibleSections.entries()].sort(
+          ([, currentValue], [, nextValue]) =>
+            nextValue.ratio - currentValue.ratio || currentValue.top - nextValue.top,
+        )[0]
+
+        const nextActiveHref = `#${nextActiveSectionId}`
+        setActiveHref((currentValue) => (currentValue === nextActiveHref ? currentValue : nextActiveHref))
+      },
+      {
+        threshold: [0.25, 0.5, 0.75],
+        rootMargin: '-30% 0px -55% 0px',
+      },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+
+    return () => {
+      observer.disconnect()
+      visibleSections.clear()
+    }
+  }, [sectionIds])
 
   return (
     <div className="min-h-screen bg-surface text-body">
-      <Navbar companyName={companyName} links={navbar.links} cta={navbar.cta} />
+      <Navbar
+        companyName={companyName}
+        links={navbar.links}
+        cta={navbar.cta}
+        activeHref={activeHref}
+        onNavLinkClick={setActiveHref}
+        onCtaClick={createTrackedCtaHandler('navbar', navbar.cta)}
+      />
 
       <main>
-        <HeroSection {...hero} />
+        <HeroSection
+          {...hero}
+          onPrimaryCtaClick={createTrackedCtaHandler('hero', hero.primaryCta)}
+          onSecondaryCtaClick={createTrackedCtaHandler('hero', hero.secondaryCta)}
+        />
 
         <SectionWrapper
           id={services.id}
@@ -82,8 +164,14 @@ function App() {
           subtitle={cta.subtitle}
           contentClassName="flex flex-wrap gap-4"
         >
-          <Button href={cta.primaryCta.href}>{cta.primaryCta.label}</Button>
-          <Button href={cta.secondaryCta.href} variant="secondary">
+          <Button href={cta.primaryCta.href} onClick={createTrackedCtaHandler('contact-section', cta.primaryCta)}>
+            {cta.primaryCta.label}
+          </Button>
+          <Button
+            href={cta.secondaryCta.href}
+            variant="secondary"
+            onClick={createTrackedCtaHandler('contact-section', cta.secondaryCta)}
+          >
             {cta.secondaryCta.label}
           </Button>
         </SectionWrapper>
