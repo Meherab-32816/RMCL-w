@@ -11,17 +11,22 @@ function HeroSection({
   onSecondaryCtaClick,
 }) {
   return (
-    <SectionWrapper id="top" className="pt-20 md:pt-24" contentClassName="max-w-4xl">
-      <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-accent">{eyebrow}</p>
-      <h1 className="text-4xl font-bold leading-tight tracking-tight text-primary md:text-6xl">
+    <SectionWrapper id="top" className="pt-20 md:pt-28" contentClassName="max-w-4xl">
+      <p className="mb-5 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-accent">{eyebrow}</p>
+      <h1 className="text-4xl font-bold leading-tight tracking-tight text-primary md:text-[3.6rem]">
         {title}
       </h1>
-      <p className="mt-6 max-w-2xl text-lg leading-relaxed text-body/80">{description}</p>
-      <div className="mt-10 flex flex-wrap gap-4">
-        <Button href={primaryCta.href} onClick={onPrimaryCtaClick}>
+      <p className="mt-7 max-w-2xl text-lg leading-relaxed text-body/75">{description}</p>
+      <div className="mt-11 flex flex-wrap gap-4">
+        <Button ariaLabel={primaryCta.label} href={primaryCta.href} onClick={onPrimaryCtaClick}>
           {primaryCta.label}
         </Button>
-        <Button href={secondaryCta.href} variant="secondary" onClick={onSecondaryCtaClick}>
+        <Button
+          ariaLabel={secondaryCta.label}
+          href={secondaryCta.href}
+          variant="secondary"
+          onClick={onSecondaryCtaClick}
+        >
           {secondaryCta.label}
         </Button>
       </div>

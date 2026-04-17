@@ -12,6 +12,8 @@ function App() {
   const sectionIds = useMemo(() => navbar.links.map((link) => link.href.replace('#', '')), [navbar.links])
   const [activeHref, setActiveHref] = useState(navbar.links[0]?.href ?? '')
   const visibleSectionsRef = useRef(new Map())
+  const cardClassName =
+    'rounded-xl border border-primary/10 bg-white p-7 shadow-[0_1px_2px_rgba(11,31,58,0.06)] transition-[box-shadow,transform] duration-200 ease-out motion-safe:hover:-translate-y-0.5 motion-safe:hover:shadow-[0_10px_26px_rgba(11,31,58,0.08)]'
 
   const createTrackedCtaHandler = (placement, action) => () => {
     if (!action) {
@@ -90,7 +92,7 @@ function App() {
         onCtaClick={createTrackedCtaHandler('navbar', navbar.cta)}
       />
 
-      <main>
+      <main id="main-content">
         <HeroSection
           {...hero}
           onPrimaryCtaClick={createTrackedCtaHandler('hero', hero.primaryCta)}
@@ -102,13 +104,15 @@ function App() {
           context={services.context}
           title={services.title}
           subtitle={services.subtitle}
-          className="border-y border-primary/10"
-          contentClassName="grid gap-4 md:grid-cols-3"
+          className="bg-white"
+          contentClassName="grid gap-5 md:grid-cols-3"
         >
-          {services.items.map((item) => (
-            <article key={item.title} className="rounded-lg border border-primary/10 bg-white p-6 shadow-sm">
-              <h3 className="text-lg font-semibold text-primary">{item.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-body/80">{item.detail}</p>
+          {services.items.map((item, index) => (
+            <article key={item.title} aria-labelledby={`service-item-${index}`} className={cardClassName}>
+              <h3 id={`service-item-${index}`} className="text-xl font-semibold text-primary">
+                {item.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-body/75">{item.detail}</p>
             </article>
           ))}
         </SectionWrapper>
@@ -118,12 +122,14 @@ function App() {
           context={methodology.context}
           title={methodology.title}
           subtitle={methodology.subtitle}
-          contentClassName="grid gap-6 md:grid-cols-3"
+          contentClassName="grid gap-5 md:grid-cols-3"
         >
-          {methodology.steps.map((step) => (
-            <article key={step.title} className="rounded-lg border border-primary/10 bg-white p-6">
-              <h3 className="text-xl font-semibold text-primary">{step.title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-body/80">{step.detail}</p>
+          {methodology.steps.map((step, index) => (
+            <article key={step.title} aria-labelledby={`methodology-step-${index}`} className={cardClassName}>
+              <h3 id={`methodology-step-${index}`} className="text-xl font-semibold text-primary">
+                {step.title}
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-body/75">{step.detail}</p>
             </article>
           ))}
         </SectionWrapper>
@@ -133,13 +139,15 @@ function App() {
           context={caseStudies.context}
           title={caseStudies.title}
           subtitle={caseStudies.subtitle}
-          className="border-y border-primary/10"
+          className="bg-white"
           contentClassName="grid gap-6 md:grid-cols-2"
         >
-          {caseStudies.items.map((study) => (
-            <article key={study.name} className="rounded-lg border border-primary/10 bg-white p-6 shadow-sm">
-              <h3 className="text-lg font-semibold text-primary">{study.name}</h3>
-              <dl className="mt-4 space-y-3 text-sm leading-relaxed text-body/80">
+          {caseStudies.items.map((study, index) => (
+            <article key={study.name} aria-labelledby={`case-study-${index}`} className={cardClassName}>
+              <h3 id={`case-study-${index}`} className="text-xl font-semibold text-primary">
+                {study.name}
+              </h3>
+              <dl className="mt-5 space-y-4 text-sm leading-relaxed text-body/75">
                 <div>
                   <dt className="font-semibold text-primary">{caseStudies.labels.challenge}</dt>
                   <dd>{study.challenge}</dd>
@@ -164,10 +172,15 @@ function App() {
           subtitle={cta.subtitle}
           contentClassName="flex flex-wrap gap-4"
         >
-          <Button href={cta.primaryCta.href} onClick={createTrackedCtaHandler('contact-section', cta.primaryCta)}>
+          <Button
+            ariaLabel={cta.primaryCta.label}
+            href={cta.primaryCta.href}
+            onClick={createTrackedCtaHandler('contact-section', cta.primaryCta)}
+          >
             {cta.primaryCta.label}
           </Button>
           <Button
+            ariaLabel={cta.secondaryCta.label}
             href={cta.secondaryCta.href}
             variant="secondary"
             onClick={createTrackedCtaHandler('contact-section', cta.secondaryCta)}

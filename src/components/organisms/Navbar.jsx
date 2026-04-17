@@ -11,18 +11,21 @@ function Navbar({ companyName, links, cta, activeHref, onNavLinkClick, onCtaClic
 
   const getLinkClasses = (href) =>
     [
-      'text-sm font-medium transition-colors',
-      activeHref === href ? 'text-primary' : 'text-body hover:text-primary',
+      'text-sm font-medium text-body/85 transition-colors duration-200 hover:text-primary focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface',
+      activeHref === href ? 'text-primary' : '',
     ].join(' ')
 
   return (
-    <header className="sticky top-0 z-40 border-b border-primary/10 bg-surface/95 backdrop-blur">
-      <nav
-        className="mx-auto w-full max-w-6xl px-6 py-4 lg:px-8"
-        aria-label="Primary"
+    <header className="sticky top-0 z-40 border-b border-primary/10 bg-surface/95 backdrop-blur supports-[backdrop-filter]:bg-surface/88">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-3 focus:rounded-md focus:bg-primary focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-white"
       >
+        Skip to main content
+      </a>
+      <nav className="mx-auto w-full max-w-6xl px-6 py-4 lg:px-8" aria-label="Primary">
         <div className="flex items-center justify-between gap-4">
-          <a href="#top" className="text-base font-bold tracking-[0.12em] text-primary">
+          <a href="#top" aria-label={`${companyName} homepage`} className="text-base font-bold tracking-[0.12em] text-primary">
             {companyName}
           </a>
 
@@ -48,6 +51,7 @@ function Navbar({ companyName, links, cta, activeHref, onNavLinkClick, onCtaClic
                 variant="secondary"
                 className="px-4 py-2 text-xs md:text-sm"
                 onClick={onCtaClick}
+                ariaLabel={cta.label}
               >
                 {cta.label}
               </Button>
@@ -58,10 +62,11 @@ function Navbar({ companyName, links, cta, activeHref, onNavLinkClick, onCtaClic
             type="button"
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-nav-menu"
-            className="inline-flex items-center rounded-md border border-primary/20 px-3 py-2 text-sm font-medium text-primary md:hidden"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            className="inline-flex items-center rounded-md border border-primary/25 px-3 py-2 text-sm font-medium text-primary transition-colors duration-200 hover:border-primary/40 hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-surface md:hidden"
             onClick={() => setIsMobileMenuOpen((previousValue) => !previousValue)}
           >
-            Menu
+            {isMobileMenuOpen ? 'Close' : 'Menu'}
           </button>
         </div>
 
@@ -83,7 +88,13 @@ function Navbar({ companyName, links, cta, activeHref, onNavLinkClick, onCtaClic
             </ul>
 
             {cta ? (
-              <Button href={cta.href} variant="secondary" className="w-full justify-center" onClick={onCtaClick}>
+              <Button
+                href={cta.href}
+                variant="secondary"
+                className="w-full justify-center"
+                onClick={onCtaClick}
+                ariaLabel={cta.label}
+              >
                 {cta.label}
               </Button>
             ) : null}
