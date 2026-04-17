@@ -12,7 +12,6 @@ function SectionWrapper({
   return (
     <section
       id={id}
-      role={headingId ? 'region' : undefined}
       aria-labelledby={headingId}
       className={`py-16 md:py-24 ${className}`.trim()}
     >
