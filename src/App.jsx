@@ -173,14 +173,12 @@ function App() {
           contentClassName="flex flex-wrap gap-4"
         >
           <Button
-            ariaLabel={cta.primaryCta.label}
             href={cta.primaryCta.href}
             onClick={createTrackedCtaHandler('contact-section', cta.primaryCta)}
           >
             {cta.primaryCta.label}
           </Button>
           <Button
-            ariaLabel={cta.secondaryCta.label}
             href={cta.secondaryCta.href}
             variant="secondary"
             onClick={createTrackedCtaHandler('contact-section', cta.secondaryCta)}

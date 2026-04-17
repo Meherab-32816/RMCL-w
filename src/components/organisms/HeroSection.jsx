@@ -18,15 +18,10 @@ function HeroSection({
       </h1>
       <p className="mt-7 max-w-2xl text-lg leading-relaxed text-body/75">{description}</p>
       <div className="mt-11 flex flex-wrap gap-4">
-        <Button ariaLabel={primaryCta.label} href={primaryCta.href} onClick={onPrimaryCtaClick}>
+        <Button href={primaryCta.href} onClick={onPrimaryCtaClick}>
           {primaryCta.label}
         </Button>
-        <Button
-          ariaLabel={secondaryCta.label}
-          href={secondaryCta.href}
-          variant="secondary"
-          onClick={onSecondaryCtaClick}
-        >
+        <Button href={secondaryCta.href} variant="secondary" onClick={onSecondaryCtaClick}>
           {secondaryCta.label}
         </Button>
       </div>

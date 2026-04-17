@@ -51,7 +51,6 @@ function Navbar({ companyName, links, cta, activeHref, onNavLinkClick, onCtaClic
                 variant="secondary"
                 className="px-4 py-2 text-xs md:text-sm"
                 onClick={onCtaClick}
-                ariaLabel={cta.label}
               >
                 {cta.label}
               </Button>
@@ -93,7 +92,6 @@ function Navbar({ companyName, links, cta, activeHref, onNavLinkClick, onCtaClic
                 variant="secondary"
                 className="w-full justify-center"
                 onClick={onCtaClick}
-                ariaLabel={cta.label}
               >
                 {cta.label}
               </Button>

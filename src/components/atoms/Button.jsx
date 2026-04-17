@@ -13,20 +13,19 @@ function Button({
   type = 'button',
   onClick,
   className = '',
-  ariaLabel,
 }) {
   const classes = `${baseClasses} ${variantClasses[variant] ?? variantClasses.primary} ${className}`.trim()
 
   if (href) {
     return (
-      <a aria-label={ariaLabel} className={classes} href={href} onClick={onClick}>
+      <a className={classes} href={href} onClick={onClick}>
         {children}
       </a>
     )
   }
 
   return (
-    <button aria-label={ariaLabel} className={classes} type={type} onClick={onClick}>
+    <button className={classes} type={type} onClick={onClick}>
       {children}
     </button>
   )

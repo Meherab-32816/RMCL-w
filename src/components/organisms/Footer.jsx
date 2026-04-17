@@ -26,11 +26,7 @@ function Footer({ companyName, description, links, contact }) {
         <address className="not-italic" aria-label="Contact details">
           <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Contact</h3>
           <p className="mt-4 text-sm leading-relaxed text-white/90">{contact.address}</p>
-          <a
-            aria-label={`Email ${contact.email}`}
-            className={`mt-3 block ${footerLinkClasses}`}
-            href={`mailto:${contact.email}`}
-          >
+          <a className={`mt-3 block ${footerLinkClasses}`} href={`mailto:${contact.email}`}>
             {contact.email}
           </a>
         </address>
