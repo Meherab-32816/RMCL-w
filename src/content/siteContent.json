@@ -1,0 +1,105 @@
+{
+  "companyName": "RMCL",
+  "navbar": {
+    "links": [
+      { "label": "Services", "href": "#services" },
+      { "label": "Methodology", "href": "#methodology" },
+      { "label": "Case Studies", "href": "#case-studies" },
+      { "label": "Contact", "href": "#contact" }
+    ],
+    "cta": { "label": "Schedule Consultation", "href": "#contact" }
+  },
+  "hero": {
+    "eyebrow": "Research and Management Consultants Ltd",
+    "title": "Evidence-led consulting for complex development and policy decisions.",
+    "description": "RMCL supports public institutions, donor programs, and private-sector leaders with rigorous research, strategic advisory, and implementation guidance that turns data into measurable outcomes.",
+    "primaryCta": { "label": "Discuss Your Brief", "href": "#contact" },
+    "secondaryCta": { "label": "View Services", "href": "#services" }
+  },
+  "services": {
+    "id": "services",
+    "context": "Starting from RMCL's value proposition, clients first need clarity on where we create operational and strategic leverage.",
+    "title": "What RMCL delivers",
+    "subtitle": "We scope engagements around the specific decisions clients need to make, then align research, advisory, and implementation support to that mandate.",
+    "items": [
+      {
+        "title": "Policy and market intelligence",
+        "detail": "Research programs that inform reform choices, investment priorities, and sector strategies."
+      },
+      {
+        "title": "Program design and performance systems",
+        "detail": "Frameworks, indicators, and governance routines that keep delivery on track and measurable."
+      },
+      {
+        "title": "Organizational strategy and execution",
+        "detail": "Advisory support to sharpen direction, strengthen operating models, and improve implementation discipline."
+      }
+    ]
+  },
+  "methodology": {
+    "id": "methodology",
+    "context": "With service scope established, the next question is how RMCL executes consistently across engagements.",
+    "title": "How RMCL works",
+    "subtitle": "Our methodology links discovery, analysis, and implementation planning so recommendations are decision-ready and executable.",
+    "steps": [
+      {
+        "title": "Diagnose",
+        "detail": "Define objectives, constraints, and stakeholder priorities through focused discovery."
+      },
+      {
+        "title": "Analyze",
+        "detail": "Apply mixed-method research and quantitative assessment to identify practical decision options."
+      },
+      {
+        "title": "Deliver",
+        "detail": "Convert findings into action plans, governance checkpoints, and measurable milestones."
+      }
+    ]
+  },
+  "caseStudies": {
+    "id": "case-studies",
+    "context": "Because methodology should be proven, we show how this approach has delivered measurable outcomes.",
+    "title": "Proof of impact",
+    "subtitle": "Selected engagements where RMCL combined rigorous analysis with execution-focused advisory support.",
+    "labels": {
+      "challenge": "Challenge",
+      "intervention": "Intervention",
+      "impact": "Impact"
+    },
+    "items": [
+      {
+        "name": "National skills program redesign",
+        "challenge": "Fragmented monitoring systems were delaying corrective decisions across implementing partners.",
+        "intervention": "RMCL restructured the performance framework and established monthly governance reviews with decision thresholds.",
+        "impact": "Reporting cycle time reduced by 40% and underperforming activities were corrected within one quarter."
+      },
+      {
+        "name": "Agribusiness market expansion strategy",
+        "challenge": "Leadership lacked evidence on priority districts and value-chain bottlenecks for expansion.",
+        "intervention": "RMCL delivered district-level market diagnostics and a phased investment roadmap tied to risk scenarios.",
+        "impact": "Client sequenced expansion into two priority corridors and achieved target revenue growth ahead of plan."
+      }
+    ]
+  },
+  "cta": {
+    "id": "contact",
+    "context": "After reviewing services, methodology, and evidence, the logical next step is to scope your engagement.",
+    "title": "Move from evidence to action",
+    "subtitle": "Share your policy, program, or organizational challenge. RMCL will propose a focused workplan with clear outcomes and delivery checkpoints.",
+    "primaryCta": { "label": "Schedule Consultation", "href": "mailto:info@rmcl.consulting" },
+    "secondaryCta": { "label": "Review Methodology", "href": "#methodology" }
+  },
+  "footer": {
+    "description": "Research and Management Consultants Ltd delivers independent, high-integrity advisory services to clients working on national and regional priorities.",
+    "links": [
+      { "label": "Services", "href": "#services" },
+      { "label": "Methodology", "href": "#methodology" },
+      { "label": "Case Studies", "href": "#case-studies" },
+      { "label": "Contact", "href": "#contact" }
+    ],
+    "contact": {
+      "address": "Dhaka, Bangladesh",
+      "email": "info@rmcl.consulting"
+    }
+  }
+}
