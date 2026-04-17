@@ -45,7 +45,7 @@ function App() {
           if (entry.isIntersecting) {
             visibleSections.set(entry.target.id, {
               ratio: entry.intersectionRatio,
-              top: Math.abs(entry.boundingClientRect.top),
+              distanceFromTop: Math.abs(entry.boundingClientRect.top),
             })
             return
           }
@@ -59,7 +59,7 @@ function App() {
 
         const [nextActiveSectionId] = [...visibleSections.entries()].sort(
           ([, currentValue], [, nextValue]) =>
-            nextValue.ratio - currentValue.ratio || currentValue.top - nextValue.top,
+            nextValue.ratio - currentValue.ratio || currentValue.distanceFromTop - nextValue.distanceFromTop,
         )[0]
 
         const nextActiveHref = `#${nextActiveSectionId}`

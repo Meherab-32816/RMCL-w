@@ -59,7 +59,7 @@ function Navbar({ companyName, links, cta, activeHref, onNavLinkClick, onCtaClic
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-nav-menu"
             className="inline-flex items-center rounded-md border border-primary/20 px-3 py-2 text-sm font-medium text-primary md:hidden"
-            onClick={() => setIsMobileMenuOpen((currentValue) => !currentValue)}
+            onClick={() => setIsMobileMenuOpen((previousValue) => !previousValue)}
           >
             Menu
           </button>
