@@ -1,32 +1,32 @@
 function Footer({ companyName, description, links, contact }) {
-  return (
-    <footer className="border-t border-primary/10 bg-primary py-12 text-white">
-      <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 lg:grid-cols-3 lg:px-8">
-        <section>
-          <h2 className="text-lg font-bold tracking-[0.08em]">{companyName}</h2>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/80">{description}</p>
-        </section>
+  const footerLinkClasses =
+    'text-sm text-white/90 transition-colors duration-200 hover:text-accent focus-visible:rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary'
 
-        <section>
-          <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Explore</h3>
+  return (
+    <footer className="border-t border-primary/15 bg-primary py-14 text-white">
+      <div className="mx-auto grid w-full max-w-6xl gap-10 px-6 lg:grid-cols-3 lg:px-8">
+        <div>
+          <h2 className="text-lg font-bold tracking-[0.08em]">{companyName}</h2>
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-white/85">{description}</p>
+        </div>
+
+        <nav aria-label="Footer links">
+          <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Explore</h3>
           <ul className="mt-4 space-y-3">
             {links.map((link) => (
               <li key={link.href}>
-                <a href={link.href} className="text-sm text-white/85 transition-colors hover:text-accent">
+                <a href={link.href} className={footerLinkClasses}>
                   {link.label}
                 </a>
               </li>
             ))}
           </ul>
-        </section>
+        </nav>
 
         <address className="not-italic">
-          <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-accent">Contact</h3>
-          <p className="mt-4 text-sm leading-relaxed text-white/85">{contact.address}</p>
-          <a
-            className="mt-3 block text-sm text-white/85 transition-colors hover:text-accent"
-            href={`mailto:${contact.email}`}
-          >
+          <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-accent">Contact</h3>
+          <p className="mt-4 text-sm leading-relaxed text-white/90">{contact.address}</p>
+          <a className={`mt-3 block ${footerLinkClasses}`} href={`mailto:${contact.email}`}>
             {contact.email}
           </a>
         </address>
